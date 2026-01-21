@@ -58,14 +58,12 @@ class linkedList {
         return this.list
     }
     contains(value) {
-        let next = this.list;
-        if (next.value == value) {return true};
-        while (next.nextNode != null) {
-            next = next.nextNode;
-            if (next.value == value) {return true};
+        for (let i = 0; i < this.size(); i++) {
+            if (value == this.at(i)) return true
         }
         return false;
     }
+    
 }
 class Node {
     constructor(value, nextNode){
@@ -77,9 +75,9 @@ const list = new linkedList();
 list.append('abc');
 list.append('abc2');
 list.append('abc3');
-//console.log(list.list)
-//console.log(list.size())
-//console.log(list.tail())
-//console.log(list.at(2)) // abc3
+console.log(list.list)
+console.log(list.size())
+console.log(list.tail())
+console.log(list.at(2)) // abc3
 console.log(list.pop());
-console.log(list.contains('abc3')) // true
+console.log(list.contains('abc2')) // true
