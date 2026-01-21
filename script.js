@@ -10,11 +10,11 @@ class linkedList {
         return next
     }
     append(value){
-        if (this.list.nextNode == null){
+        if (Object.values(this.list).length == 0){
             this.prepend(value);
         } else {
-            let next = this.#findTail();
-            next.nextNode = new Node(value, {});
+            let tail = this.#findTail();
+            tail.nextNode = new Node(value, {});
         }
     }
     prepend(value) {
@@ -42,7 +42,7 @@ class linkedList {
         if (index == this.size()-1){
             return this.tail();
         }
-        let next = this.list.nextNode;
+        let next = this.list.nextNode; // So first one isn't iterated
         if(next == null) return undefined;
         let count = 1;
         while (next.nextNode != null) {
@@ -56,6 +56,9 @@ class linkedList {
         if (this.list.value == null) return undefined;
         this.list = new Node(this.list.nextNode, {});
         return this.list
+    }
+    contains(value) {
+        
     }
 }
 class Node {
