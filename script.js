@@ -54,11 +54,17 @@ class linkedList {
     }
     pop(){
         if (this.list.value == null) return undefined;
-        this.list = new Node(this.list.nextNode, {});
+        this.list = this.list.nextNode;
         return this.list
     }
     contains(value) {
-        
+        let next = this.list;
+        if (next.value == value) {return true};
+        while (next.nextNode != null) {
+            next = next.nextNode;
+            if (next.value == value) {return true};
+        }
+        return false;
     }
 }
 class Node {
@@ -71,8 +77,9 @@ const list = new linkedList();
 list.append('abc');
 list.append('abc2');
 list.append('abc3');
-console.log(list.list)
-console.log(list.size())
-console.log(list.tail())
-console.log(list.at(2)) // abc3
-console.log(list.pop())
+//console.log(list.list)
+//console.log(list.size())
+//console.log(list.tail())
+//console.log(list.at(2)) // abc3
+console.log(list.pop());
+console.log(list.contains('abc3')) // true
