@@ -2,14 +2,18 @@ class linkedList {
     constructor(){
         this.list = {};
     }
+    #findTail(){
+        let next = this.list;
+        while (next.nextNode.nextNode != null) {
+            next = next.nextNode;
+        }
+        return next
+    }
     append(value){
         if (this.list.nextNode == null){
             this.prepend(value);
         } else {
-            let next = this.list
-            while (next.nextNode.nextNode != null) {
-                next = next.nextNode;
-            }
+            let next = this.#findTail();
             next.nextNode = new Node(value, {});
         }
     }
@@ -28,13 +32,9 @@ class linkedList {
     head(){
         return this.list.value;
     }
-    // tail(){ FIX THIS
-    //     let next = this.list;
-    //     while (next.nextNode != null) {
-    //         next = next.nextNode;
-    //     }
-    //     return next.value;
-    // }
+    tail(){
+        return this.#findTail().value;
+    }
     at(index){
         if (index == 0){
             return this.head();
@@ -42,8 +42,9 @@ class linkedList {
         if (index == this.size()-1){
             return this.tail();
         }
-        let count = 1;
         let next = this.list.nextNode;
+        if(next == null) return undefined;
+        let count = 1;
         while (next.nextNode != null) {
             if (count == index) return next.value;
             count++;
@@ -69,6 +70,6 @@ list.append('abc2');
 list.append('abc3');
 console.log(list.list)
 console.log(list.size())
-//console.log(list.tail())
-console.log(list.at(1)) // abc2
+console.log(list.tail())
+console.log(list.at(2)) // abc3
 console.log(list.pop())
