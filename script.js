@@ -84,14 +84,4 @@ class Node {
         this.nextNode = nextNode;
     }
 }
-const list = new linkedList();
-list.append('abc');
-list.append('abc2');
-list.append('abc3');
-console.log(list.list)
-console.log(list.size())
-console.log(list.tail())
-console.log(list.at(2)) // abc3
-console.log(list.contains('abc2')) // true
-console.log(list.findIndex('abc3')); // 1
-console.log(list.toString());
+export {linkedList};
