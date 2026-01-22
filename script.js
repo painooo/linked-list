@@ -63,6 +63,12 @@ class linkedList {
         }
         return false;
     }
+    findIndex(value){
+        for (let i = 0; i < this.size(); i++) {
+            if (value == this.at(i)) return i;
+        }
+        return -1;
+    }
     
 }
 class Node {
@@ -81,3 +87,4 @@ console.log(list.tail())
 console.log(list.at(2)) // abc3
 console.log(list.pop());
 console.log(list.contains('abc2')) // true
+console.log(list.findIndex('abc3')); // 1
