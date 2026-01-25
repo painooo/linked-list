@@ -30,27 +30,27 @@ class linkedList {
         return count;
     }
     head(){
-        return this.list.value;
+        return this.list;
     }
     tail(){
-        return this.#findTail().value;
+        return this.#findTail();
     }
     at(index){
         if (index == 0){
-            return this.head();
+            return this.head().value;
         }
         if (index == this.size()-1){
-            return this.tail();
+            return this.tail().value;
         }
         let next = this.list.nextNode; // So first one isn't iterated
         if(next == null) return undefined;
         let count = 1;
         while (next.nextNode != null) {
-            if (count == index) return next.value;
+            if (count == index) return next;
             count++;
             next = next.nextNode;
         }
-        return next.value
+        return next;
     }
     pop(){
         if (this.list.value == null) return undefined;
@@ -59,23 +59,32 @@ class linkedList {
     }
     contains(value) {
         for (let i = 0; i < this.size(); i++) {
-            if (value == this.at(i)) return true
+            if (value == this.at(i).value) return true
         }
         return false;
     }
     findIndex(value){
         for (let i = 0; i < this.size(); i++) {
-            if (value == this.at(i)) return i;
+            if (value == this.at(i).value) return i;
         }
         return -1;
     }
     toString(){
         let str = '';
         for (let i = 0; i < this.size(); i++) {
-            str += `( ${this.at(i)} ) -> `
+            str += `( ${this.at(i).value} ) -> `
         }
         str += 'null'
         return str;
+    }
+    removeAt(index){
+        if (index == 0) {this.pop(); return 0}
+        const toRemove = this.at(index);
+        let next = this.list;
+        while (next.nextNode.value != toRemove.value && next.nextNode != null) {
+            next = next.nextNode;
+        }
+        next.nextNode = toRemove.nextNode;
     }
 }
 class Node {

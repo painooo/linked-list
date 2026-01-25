@@ -7,4 +7,6 @@ list.append("parrot");
 list.append("hamster");
 list.append("snake");
 list.append("turtle");
+list.removeAt(0);
+list.removeAt(2);
 console.log(list.list)
