@@ -21,6 +21,7 @@ class linkedList {
         this.list = new Node(value, this.list);
     }
     size(){
+        if (this.list == null) return 0;
         let count = 0;
         let next = this.list;
         while (next.nextNode != null) {
@@ -36,19 +37,18 @@ class linkedList {
         return this.#findTail();
     }
     at(index){
+        if (this.size() == 0) return undefined;
         if (index == 0){
-            return this.head().value;
+            return this.head();
         }
         if (index == this.size()-1){
-            return this.tail().value;
+            return this.tail();
         }
-        let next = this.list.nextNode; // So first one isn't iterated
-        if(next == null) return undefined;
-        let count = 1;
-        while (next.nextNode != null) {
-            if (count == index) return next;
-            count++;
-            next = next.nextNode;
+        let next = this.list;
+        for (let i = index; i > 0; i-=2){
+            if (i == 1) {
+                next = next.nextNode;
+            } else next = next.nextNode.nextNode;
         }
         return next;
     }
@@ -58,14 +58,15 @@ class linkedList {
         return this.list
     }
     contains(value) {
-        for (let i = 0; i < this.size(); i++) {
-            if (value == this.at(i).value) return true
-        }
-        return false;
+        return this.findIndex(value) != -1;
     }
     findIndex(value){
-        for (let i = 0; i < this.size(); i++) {
-            if (value == this.at(i).value) return i;
+        let next = this.list;
+        let count = 0;
+        while (next.nextNode != null) {
+            if (value == next.value) return count;
+            count++;
+            next = next.nextNode;
         }
         return -1;
     }
