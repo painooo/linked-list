@@ -61,12 +61,8 @@ class linkedList {
         return this.findIndex(value) != -1;
     }
     findIndex(value){
-        let next = this.list;
-        let count = 0;
-        while (next.nextNode != null) {
-            if (value == next.value) return count;
-            count++;
-            next = next.nextNode;
+        for (let i = 0; i < this.size(); i++) {
+            if (value == this.at(i).value[0]) return i;
         }
         return -1;
     }
